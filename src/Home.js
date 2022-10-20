@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const Home = () => {
     return (
         <div>
@@ -7,6 +8,7 @@ const Home = () => {
             <ul>
                 <li>Add some ingredients!</li>
                 <li>Create some pizzas!</li>
+                <li>Click the links above to get started.</li>
             </ul>
         </div>
     )
