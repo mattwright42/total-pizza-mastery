@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import Ingredient from './Ingredient'
-import IngredientForm from "./IngredientForm";
+import IngredientForm from './IngredientForm';
 
 function IngredientList() {
     const [ingredients, setIngredients] = useState([])
@@ -29,7 +29,7 @@ function IngredientList() {
 
     return (
         <div>
-            <h1>What are your ingredients?</h1>
+            <h1>What are your toppings?</h1>
             <IngredientForm onSubmit={addIngredient} />
             <Ingredient ingredients={ingredients} removeIngredient={removeIngredient} updateIngredient={updateIngredient} />
         </div>

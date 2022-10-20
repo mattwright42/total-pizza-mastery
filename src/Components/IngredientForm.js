@@ -15,7 +15,7 @@ function IngredientForm(props) {
 
     const handleSubmit = e => {
         e.preventDefault()
-
+        
         props.onSubmit({
             id: Math.floor(Math.random() * 10000),
             text: input
@@ -30,27 +30,27 @@ function IngredientForm(props) {
                     <>
                         <input
                             type="text"
-                            placeholder="Update your ingredient"
+                            placeholder="Update your topping"
                             value={input}
                             name="text"
                             className="todo-input edit"
                             onChange={handleChange}
                             ref={inputRef}
                         />
-                        <button className="todo-button edit">Update</button>
+                        <button className="todo-button edit">Update Toppings</button>
                     </>
                     ) : (
                     <>
                         <input
                             type="text"
-                            placeholder="Add your ingredient"
+                            placeholder="Add your topping"
                             value={input}
                             name="text"
                             className="todo-input"
                             onChange={handleChange}
                             ref={inputRef}
                         />
-                        <button className="todo-button">Add Ingredient</button></>
+                        <button className="todo-button">Add Toppings</button></>
                     )
             }
             </form>

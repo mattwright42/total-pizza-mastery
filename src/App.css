@@ -28,13 +28,13 @@ body {
 .navbar .links {
   margin-left: auto;
 }
-.navbar a {
+.navbar a, a {
   margin-left: 16px;
   text-decoration: none;
   padding: 6px;
   color: white;
 }
-.navbar a:hover {
+.navbar a:hover, a:hover {
   color: #f1356d;
 }
 .content {
@@ -57,7 +57,7 @@ body {
   padding-bottom: 32px;
 }
 
-h1 {
+h1, p {
   margin: 32px 0;
   color: #fff;
   font-size: 24px;
