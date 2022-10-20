@@ -2,19 +2,19 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Home from './Home';
 import IngredientList from './Components/IngredientList';
-import Pizzas from './Components/Pizzas';
+import PizzaList from './Components/PizzaList';
 
 import './App.css';
 
 function App() {
   return (
     <Router>
-      <div className='todo-app'>
+      <div className='pizza-app'>
         <Navbar />
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route path='/ingredients' element={<IngredientList />} />
-          <Route path='/pizzas' element={<Pizzas />} />
+          <Route path='/pizzas' element={<PizzaList />} />
         </Routes>
       </div>
     </Router>
