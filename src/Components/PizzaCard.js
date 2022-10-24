@@ -16,21 +16,24 @@ function PizzaCard() {
             return
         }
 
-        const newIngredients = [ingredient, ...ingredients]
+        const newIngredients = [ingredient, ...pizzaContext.ingredients]
 
-        setIngredients(newIngredients)
+        setPizzaContext({...pizzaContext, ingredients: newIngredients})
     }
 
     const updateIngredient = (ingredientId, newValue) => {
-        if (!newValue.text || /^\s*$/.test(newValue.text)) {
+        if (!newValue || /^\s*$/.test(newValue)) {
             return
         }
-        setIngredients(prev => prev.map(item => (item.id === ingredientId ? newValue : item)))
+        let ingredientIndex = pizzaContext.ingredients.findIndex(ingredient => ingredient.id === ingredientId)
+        let ingredientArray = pizzaContext.ingredients
+        ingredientArray[ingredientIndex] = {id: ingredientId, text: newValue}
+        setPizzaContext({...PizzaContext, ingredients: ingredientArray})
     }
 
     const removeIngredient = id => {
-        const removeArr = [...ingredients].filter(ingredient => ingredient.id !== id)
-        setIngredients(removeArr)
+        const removeArr = [...pizzaContext.ingredients].filter(ingredient => ingredient.id !== id)
+        setPizzaContext({...pizzaContext, ingredients: removeArr})
     }
 
     // console.log(pizzaContext)
@@ -42,7 +45,7 @@ function PizzaCard() {
         <div>
             <h1>Put toppings on your pizza!</h1>
             <IngredientForm onSubmit={addIngredient} />
-            <Ingredient ingredients={ingredients} removeIngredient={removeIngredient} updateIngredient={updateIngredient} />
+            <Ingredient removeIngredient={removeIngredient} updateIngredient={updateIngredient} />
         </div>
     )
 }
