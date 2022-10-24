@@ -34,9 +34,9 @@ function PizzaCard() {
     }
 
     console.log(pizzaContext)
-    // useEffect(() => {
-    //         console.log(pizzaContext.find(el => el.id === params.id))
-    // }, [])
+    useEffect(() => {
+            console.log(pizzaContext.find(el => el.id === params.id))
+    }, [])
 
     return (
         <div>

@@ -1,37 +1,41 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Ingredient from './Ingredient'
 import IngredientForm from './IngredientForm';
+import {PizzaContext} from './PizzaContext'
 
 function IngredientList() {
-    const [ingredients, setIngredients] = useState([])
+    const [pizzaContext, setPizzaContext] = useContext(PizzaContext)
 
     const addIngredient = ingredient => {
         if (!ingredient.text || /^\s*$/.test(ingredient.text)) {
             return
         }
 
-        const newIngredients = [ingredient, ...ingredients]
+        const newIngredients = [ingredient, ...pizzaContext.ingredients]
 
-        setIngredients(newIngredients)
+        setPizzaContext({...pizzaContext, ingredients: newIngredients})
     }
 
     const updateIngredient = (ingredientId, newValue) => {
-        if (!newValue.text || /^\s*$/.test(newValue.text)) {
+        if (!newValue || /^\s*$/.test(newValue)) {
             return
         }
-        setIngredients(prev => prev.map(item => (item.id === ingredientId ? newValue : item)))
+        let ingredientIndex = pizzaContext.ingredients.findIndex(ingredient => ingredient.id === ingredientId)
+        let ingredientArray = pizzaContext.ingredients
+        ingredientArray[ingredientIndex] = {id: ingredientId, text: newValue}
+        setPizzaContext({...PizzaContext, ingredients: ingredientArray})
     }
 
     const removeIngredient = id => {
-        const removeArr = [...ingredients].filter(ingredient => ingredient.id !== id)
-        setIngredients(removeArr)
+        const removeArr = [...pizzaContext.ingredients].filter(ingredient => ingredient.id !== id)
+        setPizzaContext({...pizzaContext, ingredients: removeArr})
     }
 
     return (
         <div>
             <h1>What are your toppings?</h1>
             <IngredientForm onSubmit={addIngredient} />
-            <Ingredient ingredients={ingredients} removeIngredient={removeIngredient} updateIngredient={updateIngredient} />
+            <Ingredient removeIngredient={removeIngredient} updateIngredient={updateIngredient} />
         </div>
     )
 }

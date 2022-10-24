@@ -1,7 +1,9 @@
-import React, {useState, useEffect, useRef } from 'react'
+import React, {useState, useEffect, useRef, useContext } from 'react'
+import { PizzaContext } from './PizzaContext'
 
 function PizzaForm(props) {
     const [input, setInput] = useState(props.edit ? props.edit.value : '')
+    const [pizzaContext, setPizzaContext] = useContext(PizzaContext)
 
     const inputRef = useRef(null)
 
@@ -16,11 +18,20 @@ function PizzaForm(props) {
     const handleSubmit = e => {
         e.preventDefault()
 
-        props.onSubmit({
-            id: Math.floor(Math.random() * 10000),
-            text: input
-        })
-        setInput('')
+        const isArrayMatch = pizzaContext.pizzas.some(pizza => input === pizza.text)
+        if (isArrayMatch) {
+            console.log("Duplicate pizza")
+            return
+        } else {
+            props.onSubmit({
+                id: Math.floor(Math.random() * 10000),
+                text: input
+            })
+            console.log("pizza added")
+            setInput('')
+        }
+
+        
     }
 
     return (

@@ -12,22 +12,22 @@ import './App.css';
 
 
 function App() {
-  const [pizzas, setPizzas] = useState(null)
+  const [pizzas, setPizzas] = useState({ingredients: [], pizzas: []})
 
   return (
-    <Router>
-      <div className='pizza-app'>
-        <Navbar />
-        <PizzaContext.Provider value={[pizzas, setPizzas]}>
-          <Routes>
-              <Route exact path='/' element={<Home />} />
-              <Route path='/ingredients' element={<IngredientList />} />
-              <Route path='/pizzas' element={<PizzaList />} />
-              <Route path='/pizzacard/:id' element={<PizzaCard />} />
-          </Routes>
-       </PizzaContext.Provider>
-      </div>
-    </Router>
+    <PizzaContext.Provider value={[pizzas, setPizzas]}>
+      <Router>
+        <div className='pizza-app'>
+          <Navbar />
+            <Routes>
+                <Route exact path='/' element={<Home />} />
+                <Route path='/ingredients' element={<IngredientList />} />
+                <Route path='/pizzas' element={<PizzaList />} />
+                <Route path='/pizzacard/:id' element={<PizzaCard />} />
+            </Routes>
+        </div>
+      </Router>
+    </PizzaContext.Provider>
   );
 }
 

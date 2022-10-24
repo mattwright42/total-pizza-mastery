@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import IngredientForm from "./IngredientForm";
 import {RiCloseCircleLine} from 'react-icons/ri'
 import {TiEdit} from 'react-icons/ti'
+import { PizzaContext} from './PizzaContext'
+import Pizza from "./Pizza";
 
 function Ingredient({ingredients, removeIngredient, updateIngredient}) {
+    const [pizzaContext, setPizzaContext] = useContext(PizzaContext)
     const [edit, setEdit] = useState({
         id: null,
         value: ''
     })
 
     const submitUpdate = value => {
-        updateIngredient(edit.id, value)
+        updateIngredient(edit.id, value.text)
         setEdit({id: null, value: ''})
     }
 
@@ -18,8 +21,11 @@ function Ingredient({ingredients, removeIngredient, updateIngredient}) {
         return <IngredientForm edit={edit} onSubmit={submitUpdate} />
     }
 
-    return ingredients.map((ingredient, index) => (
-        <div className="todo-row" key={index}>
+    return (
+        <>
+        {
+            pizzaContext.ingredients.map((ingredient, index) => (
+                <div className="todo-row" key={index}>
             <div key={ingredient.id}>
                 {ingredient.text}
             </div>
@@ -32,7 +38,12 @@ function Ingredient({ingredients, removeIngredient, updateIngredient}) {
                     className="edit-icon"/>
             </div>
         </div>
-    ))
+            ))
+        }
+        </>
+    )
+
+    
 }
 
 export default Ingredient
