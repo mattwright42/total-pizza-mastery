@@ -33,10 +33,10 @@ function PizzaCard() {
         setIngredients(removeArr)
     }
 
-    console.log(pizzaContext)
-    useEffect(() => {
-            console.log(pizzaContext.find(el => el.id === params.id))
-    }, [])
+    // console.log(pizzaContext)
+    // useEffect(() => {
+    //         console.log(pizzaContext.find(el => el.id === params.id))
+    // }, [])
 
     return (
         <div>
